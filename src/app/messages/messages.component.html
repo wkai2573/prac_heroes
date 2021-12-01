@@ -1,0 +1,8 @@
+<!-- 直接使用注入的服務 的值&方法 -->
+<div *ngIf="messageService.messages.length">
+
+	<h2>Messages</h2>
+	<button class="clear" (click)="messageService.clear()">Clear messages</button>
+	<div *ngFor='let message of messageService.messages'> {{message}} </div>
+
+</div>

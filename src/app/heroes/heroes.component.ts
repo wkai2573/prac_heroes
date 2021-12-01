@@ -1,24 +1,44 @@
-import { Component, OnInit } from '@angular/core';
-import { Hero } from '../hero';
-import {HEROES} from '../mock-heroes';
+import {Component, OnInit} from '@angular/core';
+import {Hero} from '../hero';
+import {HeroService} from '../hero.service';
+import {MessageService} from '../message.service';
 
 @Component({
-  selector: 'app-heroes',
-  templateUrl: './heroes.component.html',
-  styleUrls: ['./heroes.component.css']
+	selector: 'app-heroes',
+	templateUrl: './heroes.component.html',
+	styleUrls: ['./heroes.component.css']
 })
 export class HeroesComponent implements OnInit {
-	hero: Hero = {id: 1, name: 'Windstorm'}
-	
-	heroes = HEROES
 
+	//屬性__________
+
+	heroes: Hero[] = [];
 	selectedHero?: Hero;
-	onSelect(hero: Hero): void {
-		this.selectedHero = hero;
+
+	//注入服務
+	constructor(
+		private heroService: HeroService,
+		private messageService: MessageService) {}
+
+	//方法__________
+
+	//取得英雄arr 使用觀察注入
+	getHeroes() {
+		this.heroService.getHeroes().subscribe(heroes => {
+			this.heroes = heroes;
+		});
 	}
 
-  constructor() { }
+	//選擇英雄
+	onSelect(hero: Hero) {
+		this.selectedHero = hero;
+		this.messageService.add(`HeroesComponent: Selected hero id=${hero.id}`);
+	}
 
-  ngOnInit(): void {
-  }
+	//事件:生命週期__________
+
+	ngOnInit(): void {
+		this.getHeroes();
+	}
+
 }
