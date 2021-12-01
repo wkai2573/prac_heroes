@@ -28,6 +28,22 @@ export class HeroesComponent implements OnInit {
 		});
 	}
 
+	//新增英雄
+	add(name:string) {
+		name = name.trim();
+		if (!name) return;
+		const newHero = {name} as Hero;
+		this.heroService.addHero(newHero).subscribe(hero=>{
+			this.heroes.push(hero);
+		});
+	}
+
+	//刪除英雄
+	delete(hero: Hero): void {
+		this.heroes = this.heroes.filter(h => h !== hero);
+		this.heroService.deleteHero(hero.id).subscribe();
+	}
+
 	//事件:生命週期__________
 
 	ngOnInit(): void {
