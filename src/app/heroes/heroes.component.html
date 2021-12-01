@@ -1,14 +1,18 @@
 <h2>My Heroes</h2>
 
-<!-- 迴圈 *ngFor & 事件 (click) & class選擇器 [class.selected] -->
 <ul class="heroes">
-  <li *ngFor="let hero of heroes"
+	<!-- 使用路由 -->
+	<li *ngFor="let hero of heroes">
+    <a routerLink="/detail/{{hero.id}}">
+      <span class="badge">{{hero.id}}</span> {{hero.name}}
+    </a>
+  </li>
+
+	<!-- 迴圈 *ngFor & 事件 (click) & class選擇器 [class.selected] -->
+  <!-- <li *ngFor="let hero of heroes"
 			[class.selected]="hero === selectedHero"
 			(click)="onSelect(hero)"
 			>
     <span class="badge">{{hero.id}}</span> {{hero.name}}
-  </li>
+  </li> -->
 </ul>
-
-<!-- hero detail -->
-<app-hero-detail [hero]="selectedHero"></app-hero-detail>

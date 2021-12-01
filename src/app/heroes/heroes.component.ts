@@ -13,7 +13,6 @@ export class HeroesComponent implements OnInit {
 	//屬性__________
 
 	heroes: Hero[] = [];
-	selectedHero?: Hero;
 
 	//注入服務
 	constructor(
@@ -27,12 +26,6 @@ export class HeroesComponent implements OnInit {
 		this.heroService.getHeroes().subscribe(heroes => {
 			this.heroes = heroes;
 		});
-	}
-
-	//選擇英雄
-	onSelect(hero: Hero) {
-		this.selectedHero = hero;
-		this.messageService.add(`HeroesComponent: Selected hero id=${hero.id}`);
 	}
 
 	//事件:生命週期__________
