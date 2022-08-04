@@ -31,7 +31,8 @@ export class HeroService {
 
 	//GET請求: 取得英雄arr
 	getHeroes(): Observable<Hero[]> {
-		return this.http.get<Hero[]>(this.heroesUrl)
+		return this.http
+			.get<Hero[]>(this.heroesUrl)
 			.pipe(
 				//中途紀錄
 				tap(_ => this.log('fetched heroes')),
@@ -43,47 +44,57 @@ export class HeroService {
 	//GET請求: 取得指定英雄
 	getHero(id: number): Observable<Hero> {
 		const url = `${this.heroesUrl}/${id}`;
-		return this.http.get<Hero>(url).pipe(
-			tap(_ => this.log(`fetched hero id=${id}`)),
-			catchError(this.handleError<Hero>(`getHero id=${id}`))
-		);
+		return this.http
+			.get<Hero>(url)
+			.pipe(
+				tap(_ => this.log(`fetched hero id=${id}`)),
+				catchError(this.handleError<Hero>(`getHero id=${id}`))
+			);
 	}
 
 	//PUT請求: 更新英雄至伺服器
 	updateHero(hero: Hero): Observable<any> {
-		return this.http.put(this.heroesUrl, hero, this.httpOptions).pipe(
-			tap(_ => this.log(`updated hero id=${hero.id}`)),
-			catchError(this.handleError<any>('updateHero'))
-		);
+		return this.http
+			.put(this.heroesUrl, hero, this.httpOptions)
+			.pipe(
+				tap(_ => this.log(`updated hero id=${hero.id}`)),
+				catchError(this.handleError<any>('updateHero'))
+			);
 	}
 
 	//POST請求: 新增英雄
 	addHero(hero: Hero): Observable<Hero> {
-		return this.http.post<Hero>(this.heroesUrl, hero, this.httpOptions).pipe(
-			tap((newHero: Hero) => this.log(`added hero w/ id=${newHero.id}`)),
-			catchError(this.handleError<Hero>('addHero'))
-		);
+		return this.http
+			.post<Hero>(this.heroesUrl, hero, this.httpOptions)
+			.pipe(
+				tap((newHero: Hero) => this.log(`added hero w/ id=${newHero.id}`)),
+				catchError(this.handleError<Hero>('addHero'))
+			);
 	}
 
 	//DELETE請求: 刪除指定英雄
 	deleteHero(id: number): Observable<Hero> {
 		const url = `${this.heroesUrl}/${id}`;
-		return this.http.delete<Hero>(url, this.httpOptions).pipe(
-			tap(_ => this.log(`deleted hero id=${id}`)),
-			catchError(this.handleError<Hero>('deleteHero'))
-		);
+		return this.http
+			.delete<Hero>(url, this.httpOptions)
+			.pipe(
+				tap(_ => this.log(`deleted hero id=${id}`)),
+				catchError(this.handleError<Hero>('deleteHero'))
+			);
 	}
 
 	//GET請求: 查詢英雄
 	searchHeroes(term: string): Observable<Hero[]> {
 		if (!term.trim()) return of([]);
 
-		return this.http.get<Hero[]>(`${this.heroesUrl}/?name=${term}`).pipe(
-			tap(heroArr => heroArr.length ? 
-				this.log(`found heroes matching "${term}"`) :
-				this.log(`no heroes matching "${term}"`)),
-			catchError(this.handleError<Hero[]>('searchHeroes', []))
-		);
+		return this.http
+			.get<Hero[]>(`${this.heroesUrl}/?name=${term}`)
+			.pipe(
+				tap(heroArr => heroArr.length ?
+					this.log(`found heroes matching "${term}"`) :
+					this.log(`no heroes matching "${term}"`)),
+				catchError(this.handleError<Hero[]>('searchHeroes', []))
+			);
 	}
 
 	//紀錄訊息
