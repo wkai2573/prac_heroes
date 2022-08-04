@@ -5,10 +5,10 @@ import {FormsModule} from '@angular/forms'; //使[(NgModel)]可用
 
 //自訂組件
 import {AppComponent} from './app.component';
-import {HeroesComponent} from './heroes/heroes.component';
-import {HeroDetailComponent} from './hero-detail/hero-detail.component';
-import {MessagesComponent} from './messages/messages.component';
-import {DashboardComponent} from './dashboard/dashboard.component';
+import {HeroesComponent} from './ui/heroes/heroes.component';
+import {HeroDetailComponent} from './ui/hero-detail/hero-detail.component';
+import {MessagesComponent} from './ui/messages/messages.component';
+import {DashboardComponent} from './ui/dashboard/dashboard.component';
 
 //路由
 import {AppRoutingModule} from './app-routing.module';
@@ -18,8 +18,8 @@ import {HttpClientModule} from '@angular/common/http';
 
 //模擬伺服器
 import {HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
-import {InMemoryDataService} from './in-memory-data.service';
-import { HeroSearchComponent } from './hero-search/hero-search.component';
+import {HeroSearchComponent} from './ui/hero-search/hero-search.component';
+import {InMemoryDataService} from './data/service/in-memory-data.service';
 
 @NgModule({
 	declarations: [
@@ -28,7 +28,7 @@ import { HeroSearchComponent } from './hero-search/hero-search.component';
 		HeroDetailComponent,
 		MessagesComponent,
 		DashboardComponent,
-  HeroSearchComponent,
+		HeroSearchComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -36,7 +36,7 @@ import { HeroSearchComponent } from './hero-search/hero-search.component';
 		AppRoutingModule,
 		HttpClientModule,
 		HttpClientInMemoryWebApiModule.forRoot(
-			InMemoryDataService, { dataEncapsulation: false }
+			InMemoryDataService, {dataEncapsulation: false}
 		)
 	],
 	providers: [],

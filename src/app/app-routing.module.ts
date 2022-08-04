@@ -1,8 +1,8 @@
-import {NgModule} from '@angular/core';
-import {HeroesComponent} from './heroes/heroes.component';
-import {RouterModule, Routes} from '@angular/router';
-import {DashboardComponent} from './dashboard/dashboard.component';
-import {HeroDetailComponent} from './hero-detail/hero-detail.component';
+import {NgModule} from "@angular/core";
+import {Routes, RouterModule} from "@angular/router";
+import {DashboardComponent} from "./ui/dashboard/dashboard.component";
+import {HeroDetailComponent} from "./ui/hero-detail/hero-detail.component";
+import {HeroesComponent} from "./ui/heroes/heroes.component";
 
 //路由
 const routes: Routes = [

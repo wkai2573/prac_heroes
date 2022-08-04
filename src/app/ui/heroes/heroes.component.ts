@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {Hero} from '../hero';
-import {HeroService} from '../hero.service';
-import {MessageService} from '../message.service';
+import {Component, OnInit} from "@angular/core";
+import {Hero} from "src/app/data/model/hero";
+import {HeroService} from "src/app/data/service/hero.service";
+import {MessageService} from "src/app/data/service/message.service";
+
 
 @Component({
 	selector: 'app-heroes',
@@ -16,7 +17,7 @@ export class HeroesComponent implements OnInit {
 
 	//注入服務
 	constructor(
-		private heroService: HeroService,
+		private heroService:HeroService,
 		private messageService: MessageService) {}
 
 	//方法__________
